@@ -1,7 +1,7 @@
 <mat-selection-list #users>
-  <mat-list-option *ngFor="let user of usersList">
-    <span>{{user.username}}</span>
-    <span>{{user.name}}</span>
+  <mat-list-option [ngClass]="{'odd': user.id%2}" *ngFor="let user of usersList">
+      <div>{{user.name}}</div>
+      <div>{{user.username}} {{user.email}}</div>
   </mat-list-option>
 </mat-selection-list>
 
