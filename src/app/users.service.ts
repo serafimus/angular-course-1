@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {User} from './shared/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  usersList: Array<any> = [
+  usersList: User[] = [
     {
       id: 1,
       name: 'Leanne Graham',
@@ -100,8 +101,18 @@ export class UsersService {
       website: 'ambrose.net'
     }
   ];
-  constructor() { }
-  getUsersList(): Array<any> {
+
+  constructor() {
+  }
+
+  getUsersList(): User[] {
     return this.usersList;
+  }
+  findUsers(query: string): User[] {
+    return this.usersList.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+  }
+  sortUsers(order: string): User[] {
+    const direction = !!parseInt(order, 10) ? -1 : 1;
+    return this.usersList.sort((a, b) => direction * (a.username > b.username ? 1 : -1));
   }
 }
