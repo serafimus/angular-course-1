@@ -3,6 +3,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.item {
+  width: 250px;
+  display: inline-block;
+}
 .odd {
   background-color: #c4c4c4;
 }

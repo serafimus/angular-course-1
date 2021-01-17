@@ -1,7 +1,29 @@
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Order</mat-label>
+    <mat-select #order (selectionChange)="sort(order.value)">
+      <mat-option [value]="0">
+        Ascending
+      </mat-option>
+      <mat-option [value]="1">
+        Descending
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="" value="" (keyup.enter)="search(searchQuery.value)" #searchQuery>
+    <mat-icon matSuffix (click)="search(searchQuery.value)">search</mat-icon>
+  </mat-form-field>
+</div>
+
 <mat-selection-list #users>
-  <mat-list-option [ngClass]="{'odd': user.id%2}" *ngFor="let user of usersList">
-      <div>{{user.name}}</div>
-      <div>{{user.username}} {{user.email}}</div>
+  <mat-list-option [ngClass]="{'odd': i%2}" *ngFor="let user of usersList;let i =index;">
+    <div>
+      <span class="item">{{user.username}}</span>
+      <span class="item">{{user.name}}</span>
+    </div>
   </mat-list-option>
 </mat-selection-list>
 
