@@ -108,11 +108,23 @@ export class UsersService {
   getUsersList(): User[] {
     return this.usersList;
   }
+
   findUsers(query: string): User[] {
     return this.usersList.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
   }
+
   sortUsers(order: string): User[] {
     const direction = !!parseInt(order, 10) ? -1 : 1;
     return this.usersList.sort((a, b) => direction * (a.username > b.username ? 1 : -1));
+  }
+
+  addUser(user: User): void {
+    this.usersList.push(user);
+  }
+
+  deleteUsers(users: User[]): void {
+    users.forEach(user => {
+      this.usersList = this.usersList.filter(item => item.id != user.id);
+    });
   }
 }

@@ -1,4 +1,4 @@
-<div>
+<div class="line">
   <mat-form-field appearance="outline">
     <mat-label>Order</mat-label>
     <mat-select #order (selectionChange)="sort(order.value)">
@@ -18,15 +18,57 @@
   </mat-form-field>
 </div>
 
-<mat-selection-list #users>
-  <mat-list-option [ngClass]="{'odd': i%2}" *ngFor="let user of usersList;let i =index;">
-    <div>
-      <span class="item">{{user.username}}</span>
-      <span class="item">{{user.name}}</span>
-    </div>
-  </mat-list-option>
-</mat-selection-list>
+<div class="line">
+  <mat-form-field appearance="outline" class="item">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="" value="" [(ngModel)]="username">
+  </mat-form-field>
 
-<p>
-  Options selected: {{users.selectedOptions.selected.length}}
-</p>
+  <mat-form-field appearance="outline" class="item">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="" [(ngModel)]="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="item">
+    <mat-label>Role</mat-label>
+    <mat-select [(ngModel)]="role">
+      <mat-option value="User">
+        User
+      </mat-option>
+      <mat-option value="Admin">
+        Admin
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="btn" (click)="addUser()">Add</button>
+
+</div>
+
+<div *ngIf="usersList.length > 0; else empty">
+  <mat-selection-list #users (selectionChange)="selectUsers(users.selectedOptions.selected)">
+    <mat-list-option [ngClass]="{'odd': i%2}" *ngFor="let user of usersList;let i =index;" [value]="user">
+      <div>
+        <span class="item">{{user.username}}</span>
+        <span class="item">{{user.name}}</span>
+        <span class="item" *ngIf="user.role === 'Admin'">{{user.role}}</span>
+      </div>
+    </mat-list-option>
+  </mat-selection-list>
+
+  <div class="line">
+    <div>
+      <p>
+        Options selected: {{users.selectedOptions.selected.length}}
+      </p>
+    </div>
+    <div>
+      <button mat-raised-button color="warn" class="btn" (click)="deleteUsers()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div>Users not found</div>
+</ng-template>
+

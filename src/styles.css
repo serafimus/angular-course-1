@@ -1,12 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.line {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
 .item {
-  width: 250px;
+  width: 140px;
   display: inline-block;
+  margin-right: 20px;
 }
-.odd {
+
+.gray {
   background-color: #c4c4c4;
+}
+
+.btn {
+  height: 50px;
 }
